@@ -22,12 +22,11 @@ return new class extends Migration
             $table->string('mobile_num')->unique();
             $table->string('address')->nullable();
             $table->integer('company_id')->nullable();
-            $table->enum('role',['super_admin','company_admin','manager','recruiters','employee'])->default('user');
             $table->string('provider');
             $table->integer('provider_id')->unique();
+            $table->enum('role',['super_admin','company_admin','recruiter','manager']);
             $table->boolean('status')->default(1);
             $table->timestamp('email_verified_at')->nullable();
-           
             $table->rememberToken();
             $table->timestamps();
         });
