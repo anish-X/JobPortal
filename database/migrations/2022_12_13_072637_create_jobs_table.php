@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('categorgy_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('job_position_id')->constrained();
+            $table->foreignIdFor(Category::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(Job_Position::class)->constrained();
             $table->UnsignedInteger('experience');
             $table->string('skills');
             $table->timestamps('deadline');
