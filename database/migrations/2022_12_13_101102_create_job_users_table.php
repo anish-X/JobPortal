@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Job;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,15 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('job_users', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('registration_number');
-            $table->string('address');
-            $table->string('description');
-            $table->string('logo');
-            $table->boolean('is_active')->default(true);
-            $table->foreignIdFor(Company_Category::class)->constrained();
+            $table->foreignId(User::class)->constrained();
+            $table->foreignId(Job::class)->constrained();
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('job_users');
     }
 };
