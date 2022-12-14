@@ -11,12 +11,14 @@ class Company extends Model
     protected $fillable =[
         'name',
         'registration_number',
+        'email',
         'address',
         'description',
-        'logo'
+        'logo',
+        'company_categories_id',
     ];  
-    public function company(){
-        return $this->belongsTo(Company::class);
+    public function category(){
+        return $this->belongsTo(CompanyCategory::class,"company_categories_id");
     }
 
 }

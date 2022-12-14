@@ -24,7 +24,7 @@ class CompanyCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.companyCategory.create');
     }
 
     /**
@@ -35,7 +35,11 @@ class CompanyCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $companyCategory= CompanyCategory::create([
+            "name" => $request->name,
+
+        ]);
+        return redirect()->route('companyCategory.create');
     }
 
     /**

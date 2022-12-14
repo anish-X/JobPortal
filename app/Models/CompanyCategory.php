@@ -11,8 +11,8 @@ class CompanyCategory extends Model
     protected $fillable = [
         'name',
     ];
-    
-    public function CompanyCategory(){
+
+    public function company(){
         return $this->hasMany(Company::class);
     }
 }

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('logo');
             $table->boolean('is_active')->default(true);
-            $table->foreignIdFor(CompanyCategory::class)->constrained();
+            $table->foreignId('company_categories_id')->constrained();
             $table->timestamps();
         });
     }
