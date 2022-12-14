@@ -1,8 +1,10 @@
 <?php
 
+
 use App\Models\User;
 use App\Models\JobCategory;
 use App\Models\CompanyCategory;
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
