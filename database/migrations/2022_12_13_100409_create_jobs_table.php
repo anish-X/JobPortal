@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreignIdFor(JobCategory::class)->constrained();
             $table->UnsignedInteger('experience');
             $table->string('skills');
-            $table->timestamps('deadline');
+            $table->timestamp('deadline');
             $table->unsignedFloat('salary')->nullable();
             $table->unsignedInteger('vacancy');
             $table->string('description');
