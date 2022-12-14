@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\CompanyCategory;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -17,11 +18,12 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('registration_number');
+            $table->string('email');
             $table->string('address');
             $table->string('description');
             $table->string('logo');
             $table->boolean('is_active')->default(true);
-            $table->foreignIdFor(Company_Category::class)->constrained();
+            $table->foreignIdFor(CompanyCategory::class)->constrained();
             $table->timestamps();
         });
     }
