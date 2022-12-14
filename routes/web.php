@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,10 @@ use App\Http\Controllers\CompanyController;
 */
 
 Route::get('/', function () {
-    return view('admin.index');
+    return view('super_admin.layouts');
 });
 
 Route::get('/company/create',[CompanyController::class, 'create'])->name('company.create');
 Route::post('/company/save',[CompanyController::class, 'save'])->name('company.save');
 
+Route::resource('/users/',UserController::class);
