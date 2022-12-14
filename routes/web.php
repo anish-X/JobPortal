@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JobController;
 
 /*
 |--------------------------------------------------------------------------
