@@ -14,6 +14,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
+        $categories = Company::whereBelongsTo($companycategories)->get();
        // return view('controller.index');
     }
 
@@ -35,7 +36,27 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name"=>"required|string",
+            "registration_number"=>"required|string",
+            "address"=>"required|string",
+            "description"=>"required|string",
+            "logo"=>"required"
+        ]);
+        $company = new Company();
+        $company->name = $request->name;
+        $company->registration_number = $request->registration_number;
+        $company->address = $request->address;
+        $company->description = $request->description;
+        if($request->hasfile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().".".$extension;
+            $file->move('uploads/company/'.$filename);
+            $company->logo = $filename;
+        }
+        $company->save();
+        return redirect()->route('company.create');
     }
 
     /**
