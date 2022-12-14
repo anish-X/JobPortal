@@ -18,7 +18,7 @@
         </div>
         <div class="mb-3">
           <label for="registration_number" class="registration_number">Registration Number</label>
-          <input registration_number="registration_number" type="text" class="form-control" id="registration_number"
+          <input name="registration_number" type="text" class="form-control" id="registration_number"
               placeholder="registration_number">
       
       </div>
@@ -33,14 +33,13 @@
        
         </div>
         <div class="mb-3">
-          <label for="category" class="form-label">Category</label>
-          <select name="category" id="category" form="category">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
+          <label for="">Choose a Company Category</label>
+          <select class="form-control" name="category_id" value="{{ old('category') }}" required>
+            @foreach($companies as $company)
+          <option value="{{$company->id}}">{{$company->name}}</option>
+            @endforeach
           </select>
-      </div>
+        </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <input name="description" type="text" class="form-control" id="description" placeholder="Description">
@@ -49,7 +48,8 @@
           <label for="image" class="form-label">Image</label>
           <input name="image" type="file" class="form-control" id="image"placeholder="Image">
       </div>
-     
+      
+     <button type="submit">Create Company</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
