@@ -15,7 +15,7 @@ use App\Http\Controllers\CompanyController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.index');
 });
 
 Route::get('/company/create',[CompanyController::class, 'create'])->name('company.create');
