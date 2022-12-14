@@ -24,7 +24,8 @@ return new class extends Migration
             $table->integer('company_id')->nullable();
             $table->string('provider');
             $table->integer('provider_id')->unique();
-            $table->enum('role',['super_admin','company_admin','recruiter','manager']);
+            $table->enum('role',['super_admin','company_admin','recruiter','manager','user'])
+            ->default('user');
             $table->boolean('status')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
