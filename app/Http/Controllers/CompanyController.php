@@ -14,7 +14,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $categories = Company::whereBelongsTo($companycategories)->get();
+        // $categories = Company::whereBelongsTo($companycategories)->get();
        // return view('controller.index');
     }
 
