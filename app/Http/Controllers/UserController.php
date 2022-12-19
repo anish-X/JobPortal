@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Faker\Provider\Base;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserController extends Controller
 {
@@ -13,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('super_admin.layouts');
     }
 
     /**
@@ -23,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.login');
+        
     }
 
     /**
@@ -80,5 +85,30 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function login(Request $request){
+        $request->validate([
+            'email'=>['required','email'],
+            'password'=>['required'],
+            
+        ]);
+        //return $request;
+        $user = User::where('email',$request->email)->where('role','super_admin')->first();
+        //return $user;
+         if(!$user || !Hash::check($request->password,$user->password)){
+            return "Credentials does not match";
+         }
+
+        Auth::login($user);
+
+        return redirect()->route('admin.dashboard')->withSuccess('Login successful');
+
+
+    }
+
+
+
+    public function showForm(){
+        return view('user.login');
     }
 }
