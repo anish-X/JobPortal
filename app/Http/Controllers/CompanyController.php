@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Models\CompanyCategory;
+use Illuminate\Support\Facades\Storage;
+ 
+
 
 class CompanyController extends Controller
 {
@@ -63,8 +66,10 @@ class CompanyController extends Controller
         if($request->hasfile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = time().".".$extension;
-            $file->move('uploads/company/'.$filename);
+            $filename = uniqid().".".$extension;
+
+            // $file->move('uploads/company/'.$filename);
+            Storage::disk('local')->put($filename);
             $company->logo = $filename;
         }
         $company->company_categories_id = $request->category_id;

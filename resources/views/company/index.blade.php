@@ -33,6 +33,7 @@
             {{-- public\uploads\company\1671358528.png --}}
             <link href="{{ url('/') }}/css/styles.css" rel="stylesheet" />
             <img src="{{url('/')}}/uploads/company/1671358528.png" alt="Image"/>
+            
    
            <td>{{$company->name}}</td>
 

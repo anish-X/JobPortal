@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('super_admin.layouts');
 });
 //company route
+
 Route::get('/company',[CompanyController::class,'index'])->name('company.index');
 Route::get('/company/edit',[CompanyController::class,'edit'])->name('company.edit');
 Route::get('/company/delete',[CompanyController::class,'destroy'])->name('company.delete');
