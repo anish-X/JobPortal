@@ -39,7 +39,7 @@ class CompanyCategoryController extends Controller
             "name" => $request->name,
 
         ]);
-        return redirect()->route('companyCategory.create');
+        return redirect()->route('companyCategories.create');
     }
 
     /**
@@ -64,7 +64,6 @@ class CompanyCategoryController extends Controller
         $category = companyCategory::findOrFail($id);
         return view("company.category.edit",[
             "category" => $category,
-
         ]);
     }
 
@@ -81,7 +80,7 @@ class CompanyCategoryController extends Controller
        $category->update([
         "name" => $request->name,
        ]);
-       return redirect()->route('companyCategory.index');
+       return redirect()->route('companyCategories.index');
 
     }
 
@@ -95,6 +94,6 @@ class CompanyCategoryController extends Controller
     {
         $category = CompanyCategory::findOrFail($id);
         $category->delete();
-        return redirect()->route('companyCategory.index');
+        return redirect()->route('companyCategories.index');
     }
 }

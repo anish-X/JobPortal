@@ -26,13 +26,15 @@
             <td>{{++$i}}</td>
            <td>{{$category->name}}</td>
          
-            <form action="{{route('companyCategory.edit',$category->id)}}">
+            <form action="{{route('companyCategories.edit',$category->id)}}">
             <td>
                 <button type="submit" class="btn btn-info">Edit</button>
             </td>
             </form>
 
-            <form action="{{route('companyCategory.delete',$category->id)}}">
+            <form action="{{route('companyCategories.destroy',$category->id)}}" method="post">
+                @csrf   
+                @method('DELETE')
             <td>
                 <button type="submit" class="btn btn-danger">Delete</button>
             </td>

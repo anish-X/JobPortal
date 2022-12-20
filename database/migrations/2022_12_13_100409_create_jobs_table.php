@@ -22,15 +22,32 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignIdFor(Company::class)->constrained();
-            // $table->foreignIdFor(User::class)->constrained()->nullable();
-            $table->foreignIdFor(JobCategory::class)->constrained();
-            $table->UnsignedInteger('experience');
-            $table->string('skills');
-            $table->date('deadline');
-            $table->unsignedFloat('salary')->nullable();
-            $table->unsignedInteger('vacancy');
             $table->string('description');
+            $table->foreignIdFor(JobCategory::class)->constrained();
+            $table->foreignIdFor(Company::class)->constrained();
+            $table->string('gender');
+            $table->enum('salary_type',
+                [
+                    'Hourly',
+                    'Daily',
+                    'Weekly',
+                    'Monthly',
+                    'Yearly'
+                ]);
+            $table->unsignedDecimal('min_salary');
+            $table->unsignedDecimal('max_salary');
+            $table->UnsignedInteger('experience');
+            $table->enum('qualification',
+                [
+                    'Certificate',
+                    'Diploma Degree',
+                    'Bachelor Degree',
+                    'Master Degree',
+                    'Doctorate Degree'
+                ]);
+            $table->date('deadline');
+            $table->unsignedInteger('vacancy');
+            $table->string('location');
             $table->boolean('is_active')->default(true);
             $table->softDeletes();
             $table->timestamps();
