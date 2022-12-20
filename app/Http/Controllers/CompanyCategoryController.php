@@ -14,7 +14,7 @@ class CompanyCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('company.category.index',["categories"=>CompanyCategory::get()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class CompanyCategoryController extends Controller
      */
     public function create()
     {
-        return view('company.companyCategory.create');
+        return view('company.category.create');
     }
 
     /**
@@ -59,9 +59,13 @@ class CompanyCategoryController extends Controller
      * @param  \App\Models\CompanyCategory  $companyCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(CompanyCategory $companyCategory)
+    public function edit($id)
     {
-        //
+        $category = companyCategory::findOrFail($id);
+        return view("company.category.edit",[
+            "category" => $category,
+
+        ]);
     }
 
     /**
@@ -71,9 +75,14 @@ class CompanyCategoryController extends Controller
      * @param  \App\Models\CompanyCategory  $companyCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CompanyCategory $companyCategory)
+    public function update(Request $request, $id)
     {
-        //
+       $category = CompanyCategory::findOrFail($id);
+       $category->update([
+        "name" => $request->name,
+       ]);
+       return redirect()->route('companyCategory.index');
+
     }
 
     /**
@@ -82,8 +91,10 @@ class CompanyCategoryController extends Controller
      * @param  \App\Models\CompanyCategory  $companyCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CompanyCategory $companyCategory)
+    public function destroy($id)
     {
-        //
+        $category = CompanyCategory::findOrFail($id);
+        $category->delete();
+        return redirect()->route('companyCategory.index');
     }
 }

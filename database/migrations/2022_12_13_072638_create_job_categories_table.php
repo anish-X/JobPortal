@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('job_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('category');
-            $table->string('position_type');
+            $table->string('job_category');
+            $table->enum('position_type',['Full-time','Part-Time']);
             $table->timestamps();
         });
     }

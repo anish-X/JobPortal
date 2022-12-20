@@ -20,7 +20,6 @@ class CompanyController extends Controller
     //    $categories = CompanyCategory::all();
     //    return view('company.create', compact('categories'));
        $companies = Company::with('category')->get();
-       return $companies;
        return view('company.index',['companies'=>$companies]);
     }
 
@@ -31,9 +30,9 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $company = CompanyCategory::all();
+        $categories = CompanyCategory::all();
         // return $company->companycategory->name;
-        return view('company.create',['companies'=>$company]); 
+        return view('company.create',['categories'=>$categories]); 
     }
 
     /**

@@ -132,4 +132,8 @@ class UserController extends Controller
     public function showForm(){
         return view('user.login');
     }
+    public function logout(){
+         Auth::logout();
+         return redirect()->route('user.login');
+    }
 }
