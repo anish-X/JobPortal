@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class JobCategory extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'job_category',
+        'position_type'
+    ];
+
+    public function jobs(){
+        return $this->hasMany(Job::class);
+    }
+
 }

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CompanyCategory;
+use App\Models\User;
+use Faker\Provider\Base;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Session\Session;
 
-class CompanyCategoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,7 @@ class CompanyCategoryController extends Controller
      */
     public function index()
     {
-        return view('company.category.index',["categories"=>CompanyCategory::get()]);
+        return view('super_admin.layouts');
     }
 
     /**
@@ -24,7 +28,7 @@ class CompanyCategoryController extends Controller
      */
     public function create()
     {
-        return view('company.category.create');
+        
     }
 
     /**
@@ -35,20 +39,16 @@ class CompanyCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $companyCategory= CompanyCategory::create([
-            "name" => $request->name,
-
-        ]);
-        return redirect()->route('companyCategory.create');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CompanyCategory  $companyCategory
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CompanyCategory $companyCategory)
+    public function show($id)
     {
         //
     }
@@ -56,45 +56,59 @@ class CompanyCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CompanyCategory  $companyCategory
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $category = companyCategory::findOrFail($id);
-        return view("company.category.edit",[
-            "category" => $category,
-
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CompanyCategory  $companyCategory
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-       $category = CompanyCategory::findOrFail($id);
-       $category->update([
-        "name" => $request->name,
-       ]);
-       return redirect()->route('companyCategory.index');
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CompanyCategory  $companyCategory
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $category = CompanyCategory::findOrFail($id);
-        $category->delete();
-        return redirect()->route('companyCategory.index');
+        //
+    }
+    public function login(Request $request){
+        $request->validate([
+            'email'=>['required','email'],
+            'password'=>['required'],
+            
+        ]);
+        //return $request;
+        $user = User::where('email',$request->email)->where('role','super_admin')->first();
+        //return $user;
+         if(!$user || !Hash::check($request->password,$user->password)){
+            return "Credentials does not match";
+         }
+
+        Auth::login($user);
+
+        return redirect()->route('admin.dashboard')->withSuccess('Login successful');
+
+
+    }
+
+
+
+    public function showForm(){
+        return view('user.login');
     }
 }

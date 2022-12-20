@@ -17,7 +17,6 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
@@ -60,16 +59,15 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-
-                     class="bg-white py-2 collapse-inner rounded">
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Admin</span>
+                    <span>Components</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item"href=>Company_Admin</a>
-                        <a class="collapse-item" href="buttons.html">Manager</a>
-                        <a class="collapse-item" href="cards.html">Requitor</a>
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>
             </li>
@@ -79,31 +77,16 @@
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Company</span>
+                    <span>Utilities</span>
                 </a>
                 <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item"href>Company Category</a>
-                        <a class="collapse-item" href="utilities-color.html">Job_position</a>
-                        <a class="collapse-item" href="utilities-animation.html">Job_users</a>
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item active" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-            {{-- jobs  --}}
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse show" data-target="#collapse"
-
-                     class="bg-white py-2 collapse-inner rounded">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Jobs</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-item"href=>Business</h6>
-                        <a class="collapse-item" href="buttons.html">It</a>
-                        <a class="collapse-item" href="cards.html">ABC</a>
                     </div>
                 </div>
             </li>
@@ -149,27 +132,7 @@
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
-
             </li>
-             <!-- Nav Item - subscription -->
-             <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsubscription"
-                    aria-expanded="true" aria-controls="collapsubscription">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Subscription</span>
-                </a>
-                <div id="collapsubscription" class="collapse show" aria-labelledby="headingSubscription"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item" href="{{route("sub.create")}}">Add Subscription</a>
-
-                        <a class="collapse-item active" href="{{route('sub.index')}}">List Subscription</a>
-
-                    </div>
-                </div>
-            </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -243,7 +206,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">9+</span>
+                                <span class="badge badge-danger badge-counter">3+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -258,7 +221,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 12, 2022</div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
                                         <span class="font-weight-bold">A new monthly report is ready to download!</span>
                                     </div>
                                 </a>
@@ -280,7 +243,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 2, 2022</div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
@@ -360,7 +323,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Rabina Ghimire</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('admin/img/undraw_profile.svg') }}">
                             </a>
@@ -396,9 +359,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-gray-800">Dashboard View</h1>
+                    <h1 class="h3 mb-1 text-gray-800">Border Utilities</h1>
                     <p class="mb-4">Bootstrap's default utility classes can be found on the official <a
-                            href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. </p>
+                            href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities
+                        below were created to extend this theme past the default utility classes built into Bootstrap's
+                        framework.</p>
 
                     <!-- Content Row -->
                     <div class="row">
@@ -433,6 +398,18 @@
                             <div class="card mb-4 py-3 border-left-warning">
                                 <div class="card-body">
                                     .border-left-warning
+                                </div>
+                            </div>
+
+                            <div class="card mb-4 py-3 border-left-danger">
+                                <div class="card-body">
+                                    .border-left-danger
+                                </div>
+                            </div>
+
+                            <div class="card mb-4 py-3 border-left-dark">
+                                <div class="card-body">
+                                    .border-left-dark
                                 </div>
                             </div>
 
@@ -471,9 +448,17 @@
                                 </div>
                             </div>
 
+                            <div class="card mb-4 py-3 border-bottom-danger">
+                                <div class="card-body">
+                                    .border-bottom-danger
+                                </div>
+                            </div>
 
-
-
+                            <div class="card mb-4 py-3 border-bottom-dark">
+                                <div class="card-body">
+                                    .border-bottom-dark
+                                </div>
+                            </div>
 
                         </div>
 
@@ -489,7 +474,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; BlueFox 2022</span>
+                        <span>Copyright &copy; Your Website 2020</span>
                     </div>
                 </div>
             </footer>
@@ -537,5 +522,3 @@
     <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 
 </body>
-
-</html>

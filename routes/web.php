@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\CompanyCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +16,12 @@ use App\Http\Controllers\SubscriptionController;
 */
 
 Route::get('/', function () {
-    return view('admin.index');
+    return view('super_admin.layouts');
 });
-
+//company route
+Route::get('/company',[CompanyController::class,'index'])->name('company.index');
+Route::get('/company/edit',[CompanyController::class,'edit'])->name('company.edit');
+Route::get('/company/delete',[CompanyController::class,'destroy'])->name('company.delete');
 Route::get('/company/create',[CompanyController::class, 'create'])->name('company.create');
 Route::post('/company/save',[CompanyController::class, 'save'])->name('company.save');
-Route::resource('sub', SubscriptionController::class);
-// ('/sub',[SubscriptionController::class, 'create'])->name('subscription');
 

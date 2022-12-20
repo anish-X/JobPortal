@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Models\CompanyCategory;
 
 class CompanyController extends Controller
 {
@@ -16,6 +17,10 @@ class CompanyController extends Controller
     {
         // $categories = Company::whereBelongsTo($companycategories)->get();
        // return view('controller.index');
+    //    $categories = CompanyCategory::all();
+    //    return view('company.create', compact('categories'));
+       $companies = Company::with('category')->get();
+       return view('company.index',['companies'=>$companies]);
     }
 
     /**
@@ -25,7 +30,9 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('company.create');
+        $categories = CompanyCategory::all();
+        // return $company->companycategory->name;
+        return view('company.create',['categories'=>$categories]); 
     }
 
     /**
@@ -38,14 +45,19 @@ class CompanyController extends Controller
     {
         $request->validate([
             "name"=>"required|string",
+            "email" => 'required|email',
             "registration_number"=>"required|string",
             "address"=>"required|string",
             "description"=>"required|string",
-            "logo"=>"required"
+            "category_id"=>"required",
+            "image"=>"required"
         ]);
+
+        
         $company = new Company();
         $company->name = $request->name;
         $company->registration_number = $request->registration_number;
+        $company->email = $request->email;
         $company->address = $request->address;
         $company->description = $request->description;
         if($request->hasfile('image')){
@@ -55,6 +67,7 @@ class CompanyController extends Controller
             $file->move('uploads/company/'.$filename);
             $company->logo = $filename;
         }
+        $company->company_categories_id = $request->category_id;
         $company->save();
         return redirect()->route('company.create');
     }

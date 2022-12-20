@@ -14,7 +14,7 @@ class JobCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('job.category');
     }
 
     /**
@@ -35,7 +35,30 @@ class JobCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $request->validate([
+            "job_category" => 'required',
+            "position_type" => 'required'
+        ]);
+
+        $job = JobCategory::where('job_category', $request->job_category)->first();
+        $position = JobCategory::where('position_type', $request->position_type)->first();
+
+        if(!($job) || !($position) ){
+            $category = JobCategory::create([
+                'job_category' => $request->job_category,
+                'position_type' => $request->position_type
+            ]);
+            if(!$category){
+                return back()->withError("error", "error message");
+            }
+        }
+
+
+
+        return redirect()->route('job.category')->with("success", "sucess message");
+
     }
 
     /**

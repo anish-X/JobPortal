@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Company;
 use App\Models\User;
 use App\Models\JobCategory;
 use App\Models\CompanyCategory;
@@ -20,15 +21,18 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(CompanyCategory::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->string('title');
+            $table->foreignIdFor(Company::class)->constrained();
+            // $table->foreignIdFor(User::class)->constrained()->nullable();
             $table->foreignIdFor(JobCategory::class)->constrained();
             $table->UnsignedInteger('experience');
             $table->string('skills');
-            $table->timestamp('deadline');
+            $table->date('deadline');
             $table->unsignedFloat('salary')->nullable();
             $table->unsignedInteger('vacancy');
             $table->string('description');
+            $table->boolean('is_active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

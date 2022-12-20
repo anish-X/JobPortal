@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('company_categories', function (Blueprint $table) {
             $table->id();
-            $table->enum('name',['A','B','C','D','E','F','G','H','I']);
+            $table->string('name');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
