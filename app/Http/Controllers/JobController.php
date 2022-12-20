@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\CompanyCategory;
 use App\Models\Job;
 use App\Models\JobCategory;
 use Illuminate\Http\Request;
@@ -13,12 +15,27 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       
 
-        return view('job.create',['categories' => JobCategory::all()]);
+        $lists = Job::where('is_active', true)
+            ->latest()
+            ->get();
+
+
+        return view('job.index',compact('lists'));
     }
+
+    public function view(){
+
+        return view('job.view',['views' => Job::all()]);
+
+    }
+    public function archive(){
+        $jobs = Job::onlyTrashed()->get();
+
+        return view('job.archive',compact('jobs'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +44,10 @@ class JobController extends Controller
      */
     public function create()
     {
-        
+        return view('job.create',[
+            'categories' => JobCategory::all(),
+            'companies' => Company::all(),
+        ]);
     }
 
     /**
@@ -38,28 +58,33 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-       
 
-        $this->validate($request, [
+        $request->validate([
             'title' =>'required',
             'description' => 'required',
             'experience' => 'required',
             'vacancy' => 'required',
-            'skill' => 'required'
+            'skills' => 'required',
+            'deadline' =>'required',
+            'company_id' => 'required',
+            'job_category' => 'required'
         ]);
+
+
         $job = Job::create([
             'title' => $request->title,
             'description' => $request->description,
             'experience' => $request->experience,
             'vacancy' => $request->vacancy,
             'salary' => $request->salary,
-            'skill' => $request->skill
+            'skills' => $request->skills,
+            'deadline' => $request->deadline,
+            'company_id' => $request->company_id,
+            'job_category_id' => $request->job_category
 
-
-            
         ]);
 
-        
+        return back()->with("message" , "success");
     }
 
     /**
@@ -102,8 +127,10 @@ class JobController extends Controller
      * @param  \App\Models\Job  $job
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Job $job)
+    public function destroy($id)
     {
-        //
+        $job = Job::findOrFail($id);
+        $job->delete($id);
+        return redirect()->route('job.index');
     }
 }

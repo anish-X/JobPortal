@@ -16,7 +16,7 @@ class Company extends Model
         'description',
         'logo',
         'company_categories_id',
-    ];  
+    ];
     public function category(){
         return $this->belongsTo(CompanyCategory::class,"company_categories_id");
     }

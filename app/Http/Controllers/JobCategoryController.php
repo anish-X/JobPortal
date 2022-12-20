@@ -35,23 +35,27 @@ class JobCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        
+
 
         $request->validate([
-            "category" => 'required',
+            "job_category" => 'required',
             "position_type" => 'required'
         ]);
 
-        $category = JobCategory::create([
-            'category' => $request->category,
-            'position_type' => $request->position_type
-        ]);
+        $job = JobCategory::where('job_category', $request->job_category)->first();
+        $position = JobCategory::where('position_type', $request->position_type)->first();
 
-        
-
-        if(!$category){
-            return back()->withError("error", "error message");
+        if(!($job) || !($position) ){
+            $category = JobCategory::create([
+                'job_category' => $request->job_category,
+                'position_type' => $request->position_type
+            ]);
+            if(!$category){
+                return back()->withError("error", "error message");
+            }
         }
+
+
 
         return redirect()->route('job.category')->with("success", "sucess message");
 

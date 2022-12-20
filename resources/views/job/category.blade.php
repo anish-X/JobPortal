@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html >
   <head>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,8 +22,8 @@
                 <form method="POST" action="{{route('category.create')}}">
                   @csrf
                     <div class="mb-3">
-                      <label for="forCategory" class="form-label">Name of the Category</label>
-                      <input type="text" class="form-control" id="category" name="category"></input>
+                      <label for="job_category" class="form-label">Name of the Category</label>
+                      <input type="text" class="form-control" id="job_category" name="job_category"></input>
                     </div>
                     <div class="mb-3">
                       <label for="forPosition" class="form-label">Position Type</label>

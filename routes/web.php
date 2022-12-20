@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\JobCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,14 @@ Route::get('/companyCategory/create',[CompanyCategoryController::class, 'create'
 Route::post('/companyCategory/save',[CompanyCategoryController::class, 'store'])->name('companyCategory.save');
 
 
-Route::resource('/users/',UserController::class);
+
 
 Route::get('job/',[JobController::class,'index'])->name('job.index');
-Route::post('job/create', [JobController::class, 'store'])->name('job.create');
+Route::get('job/view/',[JobController::class,'view'])->name('job.view');
+Route::get('job/create', [JobController::class, 'create'])->name('job.create');
+Route::post('/job/store',[JobController::class,'store'])->name('job.store');
 Route::get('job/category', [JobCategoryController::class,'index'])->name('job.category');
 Route::post('job/category/create', [JobCategoryController::class, 'store'])->name('category.create');
+Route::post('job/delete/{id}',[JobController::class,'destroy'])->name('job.delete');
+
+Route::get('job/archive',[JobController::class,'archive'])->name('job.archive');
