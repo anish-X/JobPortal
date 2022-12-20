@@ -17,7 +17,7 @@ use App\Http\Controllers\JobController;
 */
 
 Route::get('/', function () {
-    return view('super_admin.layouts');
+    return view('user.login');
 });
 //company route
 Route::get('/company',[CompanyController::class,'index'])->name('company.index');
@@ -37,3 +37,5 @@ Route::post('job/category/create', [JobCategoryController::class, 'store'])->nam
 Route::get('/admin/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
 Route::get('user/login',[App\Http\Controllers\UserController::class,'showForm'])->name('user.login');
 Route::post('user/login/proceed',[App\Http\Controllers\UserController::class,'login'])->name('user.login.proceed');
+Route::get('user/register',[App\Http\Controllers\UserController::class,'create'])->name('user.register');
+Route::post('user/register/proceed',[App\Http\Controllers\UserController::class,'save'])->name('user.register.proceed');

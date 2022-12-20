@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+        return view('user.register');
     }
 
     /**
@@ -37,9 +37,30 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function save(Request $request)
     {
-        //
+       // return $request;
+        $request->validate([
+            'name' =>['string','required'],
+            'email'=>['email','required'],
+            'password' =>['required','confirmed','min:7'],
+            'username' =>['string','required'],
+            'address' =>['string','required'],
+            'mobile_num' =>['max:10','required','min:10'],
+        ]);
+        //return $request;
+       $register_user = User::create([
+        "mobile_num"=>$request->mobile_num,
+        "name"=> $request->name,
+        "email"=> $request->email,
+        "username"=>$request->username,
+        'address'=>$request->address,
+        "password"=>Hash::make($request->password),
+       ]);
+       if(!$register_user){
+            return redirect()->route('user.register.proceed')->with('error','User registration failed');
+       }
+       return redirect()->route('user.login');
     }
 
     /**
