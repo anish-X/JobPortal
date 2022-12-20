@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\JobCategory;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -14,7 +15,9 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+       
+
+        return view('job.create',['categories' => JobCategory::all()]);
     }
 
     /**
@@ -24,7 +27,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +38,28 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+
+        $this->validate($request, [
+            'title' =>'required',
+            'description' => 'required',
+            'experience' => 'required',
+            'vacancy' => 'required',
+            'skill' => 'required'
+        ]);
+        $job = Job::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'experience' => $request->experience,
+            'vacancy' => $request->vacancy,
+            'salary' => $request->salary,
+            'skill' => $request->skill
+
+
+            
+        ]);
+
+        
     }
 
     /**
