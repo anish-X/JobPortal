@@ -22,10 +22,14 @@ Route::get('/', function () {
 });
 //company route
 Route::get('/company',[CompanyController::class,'index'])->name('company.index');
+Route::get('/company/edit',[CompanyController::class,'edit'])->name('company.edit');
+Route::get('/company/delete',[CompanyController::class,'destroy'])->name('company.delete');
 Route::get('/company/create',[CompanyController::class, 'create'])->name('company.create');
 
 Route::post('/company/save',[CompanyController::class, 'store'])->name('company.save');
 //company category route
+Route::get('/companyCategory',[CompanyCategoryController::class,'index'])->name('companyCategory.index');
+
 Route::get('/companyCategory/create',[CompanyCategoryController::class, 'create'])->name('companyCategory.create');
 Route::post('/companyCategory/save',[CompanyCategoryController::class, 'store'])->name('companyCategory.save');
 
@@ -41,3 +45,9 @@ Route::post('job/category/create', [JobCategoryController::class, 'store'])->nam
 Route::post('job/delete/{id}',[JobController::class,'destroy'])->name('job.delete');
 
 Route::get('job/archive',[JobController::class,'archive'])->name('job.archive');
+
+//User Controller
+Route::get('/admin/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
+Route::get('user/login',[App\Http\Controllers\UserController::class,'showForm'])->name('user.login');
+Route::post('user/login/proceed',[App\Http\Controllers\UserController::class,'login'])->name('user.login.proceed');
+

@@ -14,20 +14,29 @@
 <div class="pt-5">
   <h1></h1>
   
-<div class="container">
+<div class="container ">
                 <div class="row">
                     <div class="col-md-5 mx-auto">
                         <div class="card card-body">
-                                                    
-                            <form id="submitForm" action="" method="post" data-parsley-validate="" data-parsley-errors-messages-disabled="true" novalidate="" _lpchecked="1"><input type="hidden" name="_csrf" value="7635eb83-1f95-4b32-8788-abec2724a9a4">
+                            @if($errors->any()) 
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error )
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif                      
+                            <form id="submitForm" action="{{ route('user.login.proceed') }}" method="post">
+                                @csrf
                                 <div class="form-group required">
-                                    <label for="username">Username / Email</label>
-                                    <input type="text" class="form-control text-lowercase" id="username" required="" name="username" value="">
+                                    <label for="email"> Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
                                 </div>                    
                                 <div class="form-group required">
                                     <label class="d-flex flex-row align-items-center" for="password">Password 
                                         <a class="ml-auto border-link small-xl" href="">Forget?</a></label>
-                                    <input type="password" class="form-control" required="" id="password" name="password" value="">
+                                    <input type="password" class="form-control" id="password" name="password">
                                 </div>
                                 <div class="form-group mt-4 mb-4">
                                     <div class="custom-control custom-checkbox">
