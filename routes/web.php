@@ -21,24 +21,25 @@ Route::get('/', function () {
 });
 //company route
 
-Route::get('/company',[CompanyController::class,'index'])->name('company.index');
-Route::get('/company/edit',[CompanyController::class,'edit'])->name('company.edit');
-Route::get('/company/delete',[CompanyController::class,'destroy'])->name('company.delete');
-Route::get('/company/create',[CompanyController::class, 'create'])->name('company.create');
+Route::resource('companies',CompanyController::class);
 
-Route::post('/company/save',[CompanyController::class, 'store'])->name('company.save');
+// Route::get('/company',[CompanyController::class,'index'])->name('company.index');
+// Route::get('/company/edit',[CompanyController::class,'edit'])->name('company.edit');
+// Route::get('/company/delete',[CompanyController::class,'destroy'])->name('company.delete');
+// Route::get('/company/create',[CompanyController::class, 'create'])->name('company.create');
+// Route::post('/company/save',[CompanyController::class, 'store'])->name('company.save');
+
 //company category route
-Route::get('/companyCategory',[CompanyCategoryController::class,'index'])->name('companyCategory.index');
+Route::resource('companyCategories',CompanyCategoryController::class);
 
-Route::get('/companyCategory/create',[CompanyCategoryController::class, 'create'])->name('companyCategory.create');
-Route::post('/companyCategory/save',[CompanyCategoryController::class, 'store'])->name('companyCategory.save');
+// Route::get('/companyCategory',[CompanyCategoryController::class,'index'])->name('companyCategory.index');
+// Route::get('/companyCategory/create',[CompanyCategoryController::class, 'create'])->name('companyCategory.create');
+// Route::post('/companyCategory/save',[CompanyCategoryController::class, 'store'])->name('companyCategory.save');
+// Route::get('/companyCategory/edit/{id}',[CompanyCategoryController::class,'edit'])->name('companyCategory.edit');
+// Route::post('/companyCategory/update/{id}',[CompanyCategoryController::class, 'update'])->name('companyCategory.update');
+// Route::get('/companyCategory/delete/{id}',[CompanyCategoryController::class, 'destroy'])->name('companyCategory.delete');
 
-
-Route::get('/companyCategory/edit/{id}',[CompanyCategoryController::class,'edit'])->name('companyCategory.edit');
-Route::post('/companyCategory/update/{id}',[CompanyCategoryController::class, 'update'])->name('companyCategory.update');
-Route::get('/companyCategory/delete/{id}',[CompanyCategoryController::class, 'destroy'])->name('companyCategory.delete');
-
-
+//Job Route
 Route::get('job/',[JobController::class,'index'])->name('job.index');
 Route::post('job/create', [JobController::class, 'store'])->name('job.create');
 Route::get('job/category', [JobCategoryController::class,'index'])->name('job.category');
