@@ -35,8 +35,8 @@
         <div class="mb-3">
           <label for="">Choose a Company Category</label>
           <select class="form-control" name="category_id" value="{{ old('category') }}" required>
-            @foreach($companies as $company)
-          <option value="{{$company->id}}">{{$company->name}}</option>
+            @foreach($categories as $category)
+          <option value="{{$category->id}}">{{$category->name}}</option>
             @endforeach
           </select>
         </div>
@@ -53,5 +53,4 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
-
 </html>

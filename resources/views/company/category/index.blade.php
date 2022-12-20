@@ -11,39 +11,28 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>logo</th>
-                <th>Company Name</th>
-                <th>Registration Number</th>
-                <th>Address</th>
-                <th>Email</th>
-                <th>Company Category</th>
+                <th>Category Name</th>
+                <th>Action</th>
             </tr>
         </thead>
        <tbody>
         @php
             $i = 0;
         @endphp
-        @foreach($companies as $company)
+        @foreach($categories as $category)
 
         <tr>
 
             <td>{{++$i}}</td>
-            {{-- {{ URL::to('/') }}/images/stackoverflow.png --}}
-            {{-- C:\Users\localadmin\Desktop\project\JobPortal\public\uploads\company\1671012440.jpg --}}
-            {{-- public\uploads\company\1671358528.png --}}
-            <link href="{{ url('/') }}/css/styles.css" rel="stylesheet" />
-            <img src="{{url('/')}}/uploads/company/1671358528.png" alt="Image"/>
-   
-           <td>{{$company->name}}</td>
-
+           <td>{{$category->name}}</td>
          
-            <form action="{{route('company.edit',$company->id)}}">
+            <form action="{{route('companyCategory.edit',$category->id)}}">
             <td>
                 <button type="submit" class="btn btn-info">Edit</button>
             </td>
             </form>
 
-            <form action="{{route('company.delete',$company->id)}}">
+            <form action="{{route('companyCategory.delete',$category->id)}}">
             <td>
                 <button type="submit" class="btn btn-danger">Delete</button>
             </td>
