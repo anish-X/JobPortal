@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,6 @@ Route::get('/', function () {
 
 Route::get('/company/create',[CompanyController::class, 'create'])->name('company.create');
 Route::post('/company/save',[CompanyController::class, 'save'])->name('company.save');
+Route::resource('sub', SubscriptionController::class);
+// ('/sub',[SubscriptionController::class, 'create'])->name('subscription');
 
