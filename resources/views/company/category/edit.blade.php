@@ -8,8 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-  <form action="{{ route('companyCategory.update',$category->id) }}" method="POST">
+  <form action="{{ route('companyCategories.update',$category->id) }}" method="POST">
     @csrf
+    @method('PATCH')
     <div class="card-body">
         <div class="mb-3">
             <label for="name" class="name">Name</label>
