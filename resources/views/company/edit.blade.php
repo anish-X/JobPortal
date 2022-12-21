@@ -9,38 +9,36 @@
 </head>
 <body>
     
-    <form action="{{route('companies.update',$company->id)}}">
+    <form action="{{route('companies.update',$company->id)}}" method="post">
     @csrf
     @method('PATCH')
     <div class="card-body">
         <div class="mb-3">
             <label for="name" class="name">Name</label>
-            <input name="name" value="{{$company->name}}" type="text" class="form-control" id="name"
-                placeholder="Name">
+            <input name="name" value="{{$company->name}}" type="text" class="form-control" id="name">
         </div>
         <div class="mb-3">
             <label for="Registration_number" class="Registration_number">Registration Number</label>
-            <input name="Registration_number" value="{{$company->Registration_number}}" type="text" class="form-control" id="Registration_number"
-                placeholder="Registration_number">
+            <input name="Registration_number" value="{{$company->registration_number}}" type="text" class="form-control" id="Registration_number"
+                >
         </div>
         <div class="mb-3">
             <label for="Address" class="Address">Address</label>
-            <input name="Address" value="{{$company->Address}}" type="text" class="form-control" id="Address"
-                placeholder="Address">
+            <input name="Address" value="{{$company->address}}" type="text" class="form-control" id="Address">
         </div>
         <div class="mb-3">
             <label for="description" class="description">description</label>
             <input name="description" value="{{$company->description}}" type="text" class="form-control" id="description"
                 placeholder="description">
         </div>
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label for="">Choose a Company Category</label>
             <select class="form-control" name="category_id" value="{{ old('category') }}" required>
               @foreach($categories as $category)
                 <option value="{{$category->id}}">{{$category->name}}</option>
               @endforeach
             </select>
-          </div>
+          </div> --}}
         <div class="mb-3">
             <label for="image">Image</label>
             <input name="image" type="file" class="form-control" id="image"placeholder="Image">

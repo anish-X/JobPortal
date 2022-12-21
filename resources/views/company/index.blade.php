@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Document</title>
 </head>
 <body>
@@ -35,12 +37,12 @@
             {{-- public\uploads\company\1671358528.png --}}
             {{-- <link href="{{ url('/') }}/css/styles.css" rel="stylesheet" />
             <img src="{{url('/')}}/uploads/company/1671358528.png" alt="Image"/> --}}
-            <td><img src="{{ Storage::disk('public')->url($company->logo) }}" alt="{{ $company->name }}"> </td>
+            <td><img style="height: 5rem;width:5rem;" src="{{ Storage::disk('public')->url($company->logo) }}" alt="{{ $company->name }}"> </td>
            <td>{{$company->name}}</td>
            <td>{{$company->registration_number}}</td>
            <td>{{$company->address}}</td>
            <td>{{$company->email}}</td>
-           <td>{{$company->category->name}}</td>
+           <td>{{$company->category}}</td>
             {{-- {{$company->logo}} --}}
 
          

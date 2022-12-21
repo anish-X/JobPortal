@@ -68,7 +68,7 @@ class CompanyController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = uniqid().".".$extension;
-            Storage::disk('public')->put($filename, $file);
+            Storage::disk('public')->put($filename, file_get_contents($file));
             $company->logo = $filename;
         }
         $company->company_categories_id = $request->category_id;
@@ -96,9 +96,10 @@ class CompanyController extends Controller
     public function edit($id)
     {
         $company = Company::findOrFail($id);
-        $categories = CompanyCategory::all();
+        // $categories = CompanyCategory::all();
+        // "categories"=>$categories
         return view('company.edit',[
-            "company" => $company ,"categories"=>$categories
+            "company" => $company
         ]);
     }
 
@@ -117,9 +118,10 @@ class CompanyController extends Controller
         "registration_number"=> $request->registration_number, 
         "address"=> $request->address,
         "description"=> $request->description,
-        "category_id"=> $request->category_id,
+        "company_categories_id"=> $request->category_id,
         "logo"=> $request->image,
         ]);
+        return redirect()->route('companies.index');
     }
 
     /**
