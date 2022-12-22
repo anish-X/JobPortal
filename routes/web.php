@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Middleware\AdminLogin;
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,4 +66,10 @@ Route::post('/logout',[App\Http\Controllers\UserController::class,'logout'])->na
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function () {
     Route::get('/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
+
+
+
 });
+//subscription route
+Route::resource('sub', SubscriptionController::class);
+
