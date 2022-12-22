@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Models\CompanyCategory;
+use Illuminate\Support\Facades\Storage;
+ 
+
 
 class CompanyController extends Controller
 {
@@ -20,6 +23,7 @@ class CompanyController extends Controller
     //    $categories = CompanyCategory::all();
     //    return view('company.create', compact('categories'));
        $companies = Company::with('category')->get();
+     
        return view('company.index',['companies'=>$companies]);
     }
 
@@ -63,13 +67,13 @@ class CompanyController extends Controller
         if($request->hasfile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = time().".".$extension;
-            $file->move('uploads/company/'.$filename);
+            $filename = uniqid().".".$extension;
+            Storage::disk('public')->put($filename, file_get_contents($file));
             $company->logo = $filename;
         }
         $company->company_categories_id = $request->category_id;
         $company->save();
-        return redirect()->route('company.create');
+        return redirect()->route('companies.create');
     }
 
     /**
@@ -89,9 +93,14 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit($id)
     {
-        //
+        $company = Company::findOrFail($id);
+        // $categories = CompanyCategory::all();
+        // "categories"=>$categories
+        return view('company.edit',[
+            "company" => $company
+        ]);
     }
 
     /**
@@ -101,9 +110,18 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, $id)
     {
-        //
+        $company = CompanyCategory::findOrFail($id);
+        $company->update([
+        "name"=> $request->name,
+        "registration_number"=> $request->registration_number, 
+        "address"=> $request->address,
+        "description"=> $request->description,
+        "company_categories_id"=> $request->category_id,
+        "logo"=> $request->image,
+        ]);
+        return redirect()->route('companies.index');
     }
 
     /**
@@ -112,8 +130,10 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(Request $request, $id)
     {
-        //
+        $company = Company::findOrFail($id);
+        $company->delete();
+        return redirect()->route('companies.index');
     }
 }

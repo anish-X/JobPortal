@@ -14,7 +14,9 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        //
+        $subscription = Subscription::get();
+         // return view('subscription.index',['subscription' => Subscription::all()]);
+       return view ('subscription.index',["subscriptions"=>$subscription]);
     }
 
     /**
@@ -24,7 +26,7 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        //
+         return view ('subscription.create');
     }
 
     /**
@@ -35,7 +37,27 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name"=>"required|string",
+            "rate"=>"required|string",
+            "duration"=>"required|string",
+
+        ]);
+
+        $subscription=Subscription::create([
+            'name'=>$request->name,
+            'rate'=>$request->rate,
+            'duration'=>$request->duration,
+
+        ]);
+        if($subscription)
+        {
+            return back()->with("error","error message") ;
+        }
+            return redirect('subscription.create')->with('success_msg', 'Subscription created!');
+
+
+
     }
 
     /**
@@ -55,9 +77,20 @@ class SubscriptionController extends Controller
      * @param  \App\Models\Subscription  $subscription
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subscription $subscription)
+    public function edit($id)
     {
-        //
+
+    $subscription=Subscription::findOrfail($id);
+
+        return view ('subscription.edit',["subscription"=>$subscription]);
+        
+
+
+
+
+
+
+
     }
 
     /**
@@ -67,9 +100,20 @@ class SubscriptionController extends Controller
      * @param  \App\Models\Subscription  $subscription
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subscription $subscription)
+    public function update(Request $request, $id)
     {
-        //
+        $subscription=Subscription::findOrfail($id);
+        $subscription->update([
+            'name'=>$request->name,
+            'rate'=>$request->rate,
+            'duration'=>$request->duration,]);
+
+             if(!$subscription)
+        {
+            return back()->with("error","error message") ;
+        }
+            return redirect('sub')->with('success_msg', 'Subscription created!');
+
     }
 
     /**
@@ -78,8 +122,10 @@ class SubscriptionController extends Controller
      * @param  \App\Models\Subscription  $subscription
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subscription $subscription)
+    public function destroy($id)
     {
-        //
+        $subscription=Subscription::findOrfail($id);
+        $subscription->delete($subscription);
+        return redirect('sub')->with('success_msg', 'Subscription deleted!');
     }
 }

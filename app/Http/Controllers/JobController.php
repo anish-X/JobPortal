@@ -62,25 +62,38 @@ class JobController extends Controller
         $request->validate([
             'title' =>'required',
             'description' => 'required',
+            'job_category' => 'required',
+            'company' => 'required',
+            'gender' => 'required',
+            'salary_type' => 'required',
+            'min_salary' => 'required',
+            'max_salary' => 'required',
             'experience' => 'required',
-            'vacancy' => 'required',
-            'skills' => 'required',
+            'qualification' => 'required',
             'deadline' =>'required',
-            'company_id' => 'required',
-            'job_category' => 'required'
+            'vacancy' => 'required',
+            'location' => 'required',
+
         ]);
 
 
         $job = Job::create([
             'title' => $request->title,
             'description' => $request->description,
+            'job_category_id' => $request->job_category,
+            'company_id' => $request->company,
+            'gender' => $request->gender,
+            'salary_type' => $request->salary_type,
+            'min_salary' => $request->min_salary,
+            'max_salary' => $request->max_salary,
             'experience' => $request->experience,
-            'vacancy' => $request->vacancy,
-            'salary' => $request->salary,
-            'skills' => $request->skills,
+            'qualification' => $request->qualification,
             'deadline' => $request->deadline,
-            'company_id' => $request->company_id,
-            'job_category_id' => $request->job_category
+            'vacancy' => $request->vacancy,
+            'location' => $request->location,
+
+
+
 
         ]);
 
