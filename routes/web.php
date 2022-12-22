@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompanySubscriptionController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobCategoryController;
 
@@ -50,4 +51,6 @@ Route::get('job/archive',[JobController::class,'archive'])->name('job.archive');
 Route::get('/admin/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
 Route::get('user/login',[App\Http\Controllers\UserController::class,'showForm'])->name('user.login');
 Route::post('user/login/proceed',[App\Http\Controllers\UserController::class,'login'])->name('user.login.proceed');
+Route::resource('comsub', CompanySubscriptionController::class);
+
 
