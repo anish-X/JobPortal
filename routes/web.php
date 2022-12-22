@@ -63,7 +63,6 @@ Route::post('user/login/proceed',[App\Http\Controllers\UserController::class,'lo
 //Route for Admin
 
 Route::post('/logout',[App\Http\Controllers\UserController::class,'logout'])->name('logout');
-
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function () {
     Route::get('/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
 
