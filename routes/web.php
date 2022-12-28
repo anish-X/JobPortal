@@ -32,10 +32,11 @@ Route::resource('companies',CompanyController::class);
 // Route::get('/company/create',[CompanyController::class, 'create'])->name('company.create');
 // Route::post('/company/save',[CompanyController::class, 'store'])->name('company.save');
 
+Route::post('/companies/search', [CompanyController::class,'search'])->name('companies.search');
 
 //company category route
 Route::resource('companyCategories',CompanyCategoryController::class);
-
+//search for company
 
 
 // Route::get('/companyCategory',[CompanyCategoryController::class,'index'])->name('companyCategory.index');
@@ -65,9 +66,6 @@ Route::post('user/login/proceed',[App\Http\Controllers\UserController::class,'lo
 Route::post('/logout',[App\Http\Controllers\UserController::class,'logout'])->name('logout');
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function () {
     Route::get('/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
-
-
-
 });
 //subscription route
 Route::resource('sub', SubscriptionController::class);
