@@ -19,6 +19,10 @@ return new class extends Migration
             $table->id();
             $table->foreignIdfor(Subscription::class)->constrained()->onDelete("cascade");
             $table->foreignIdfor(Company::class)->constrained()->onDelete("cascade");
+
+
+
+
             $table->timestamps();
         });
     }

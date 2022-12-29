@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanySubscription;
+use App\Models\Company;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 
 class CompanySubscriptionController extends Controller
@@ -12,11 +14,13 @@ class CompanySubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return $companysubscription =  CompanySubscription::get();
-        return view('company_subscription.index',['companysubscriptions' => $companysubscription]);
+    public function index(Request $request)
+     {
+
+        $companysubscriptions =  CompanySubscription::get();
+        return view('CompanySubscription.index',['companysubscriptions' => $companysubscriptions]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,12 +29,22 @@ class CompanySubscriptionController extends Controller
      */
     public function create()
 
+
+
+
+
+
     {
-          return view('company_subscription.create');
+        $company_subs = Company::all();
+        $subscriptions = Subscription::all();
 
-        //  = CompanyCategory::all();
+        return view('CompanySubscription.create', compact('company_subs',"subscriptions"));
 
-        // return view('company.create',['categories'=>$categories]);
+
+
+
+
+
     }
 
     /**
@@ -41,8 +55,11 @@ class CompanySubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-      
 
+         $companysubscriptions= CompanySubscription::create([
+            'company_id' => $request->company_name,
+            'subscription_id' => $request->subscribe_name,
+         ]);
 
 
     }
@@ -64,9 +81,12 @@ class CompanySubscriptionController extends Controller
      * @param  \App\Models\CompanySubscription  $companySubscription
      * @return \Illuminate\Http\Response
      */
-    public function edit(CompanySubscription $companySubscription)
+    public function edit(CompanySubscription $companySubscription,$id)
     {
-        //
+        $companysubscriptions=CompanySubscription::findOrFail($id);
+        $company_subs = Company::all();
+        $subscriptions = Subscription::all();
+        return view('CompanySubscription.edit',compact('company_subs','companysubscriptions',"subscriptions"));
     }
 
     /**
@@ -76,9 +96,14 @@ class CompanySubscriptionController extends Controller
      * @param  \App\Models\CompanySubscription  $companySubscription
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CompanySubscription $companySubscription)
+    public function update(Request $request, CompanySubscription $companySubscription,$id)
     {
-        //
+        $companysubscriptions=CompanySubscription::findOrFail($id);
+        $companysubscriptions->update([
+            'company_id' => $request->company_name,
+            'subscription_id' => $request->subscribe_name,
+        ]);
+        return redirect()->route('comsub.index');
     }
 
     /**
@@ -87,8 +112,10 @@ class CompanySubscriptionController extends Controller
      * @param  \App\Models\CompanySubscription  $companySubscription
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CompanySubscription $companySubscription)
+    public function destroy($id)
     {
-        //
+        $companySubscription=CompanySubscription::findOrFail($id);
+        $companySubscription->delete();
+        return redirect(route('comsub.index'))->with('success','Company Subscription deleted successfully.');
     }
 }

@@ -12,6 +12,14 @@ class CompanySubscription extends Model
       'company_id',
       'subscription_id',
 
+
     ];
+public function company(){
+    return $this->belongsTo(Company::class);
+}
+public function subscription(){
+    return $this->belongsTo(Subscription::class);
+}
+
 
 }

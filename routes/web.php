@@ -3,11 +3,12 @@
 use App\Http\Controllers\CompanyCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\CompanySubscriptionController;
+
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Middleware\AdminLogin;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\CompanySubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::resource('companies',CompanyController::class);
 
 //company category route
 Route::resource('companyCategories',CompanyCategoryController::class);
+Route::resource('sub', SubscriptionController::class);
+Route::resource('comsub', CompanySubscriptionController::class);
 
 
 
