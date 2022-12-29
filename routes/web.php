@@ -34,11 +34,10 @@ Route::resource('companies',CompanyController::class);
 // Route::get('/company/create',[CompanyController::class, 'create'])->name('company.create');
 // Route::post('/company/save',[CompanyController::class, 'store'])->name('company.save');
 
+Route::post('/companies/search', [CompanyController::class,'search'])->name('companies.search');
 
 //company category route
 Route::resource('companyCategories',CompanyCategoryController::class);
-Route::resource('sub', SubscriptionController::class);
-Route::resource('comsub', CompanySubscriptionController::class);
 
 
 
@@ -70,9 +69,6 @@ Route::post('/logout',[App\Http\Controllers\UserController::class,'logout'])->na
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function () {
     Route::get('/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
-
-
-
 });
 //subscription route
 Route::resource('sub', SubscriptionController::class);
