@@ -83,11 +83,6 @@ class SubscriptionController extends Controller
     $subscription=Subscription::findOrfail($id);
 
         return view ('subscription.edit',["subscription"=>$subscription]);
-        
-
-
-
-
 
 
 

@@ -19,18 +19,19 @@
         <div class="mb-3">
           <label for="registration_number" class="registration_number">Registration Number</label>
           <input name="registration_number" type="text" class="form-control" id="registration_number"
+          
               placeholder="registration_number">
-      
+
       </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input name="email" type="email" class="form-control" id="email" placeholder="Email">
-        
+
         </div>
         <div class="mb-3">
             <label for="address" class="form-label">Address</label>
             <input name="address" type="text" class="form-control" id="address" placeholder="Address">
-       
+
         </div>
         <div class="mb-3">
           <label for="">Choose a Company Category</label>
@@ -48,7 +49,7 @@
           <label for="image" class="form-label">Image</label>
           <input name="image" type="file" class="form-control" id="image"placeholder="Image">
       </div>
-      
+
      <button type="submit">Create Company</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

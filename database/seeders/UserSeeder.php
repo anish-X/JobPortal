@@ -19,11 +19,11 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name'=> 'Arjun Regmi',
-                'username'=> 'arjun2056',
+                'name'=> 'Rabina Ghimire',
+                'username'=> 'rabina777',
                 'password'=> Hash::make('12345678'),
-                'email'=> 'arjunregmi3344@gmail.com',
-                'mobile_num'=>'9842148105',
+                'email'=> 'rabinag777@gmail.com',
+                'mobile_num'=>'9842190105',
                 'address'=>null,
                 'company_id'=>null,
                 'role'=>'super_admin',
