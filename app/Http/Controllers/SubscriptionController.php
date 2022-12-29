@@ -14,7 +14,8 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $subscription = Subscription::get();
+
+        $subscription = Subscription::orderBy('name', 'ASC')->get();
          // return view('subscription.index',['subscription' => Subscription::all()]);
        return view ('subscription.index',["subscriptions"=>$subscription]);
     }

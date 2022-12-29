@@ -20,5 +20,9 @@ class Company extends Model
     public function category(){
         return $this->belongsTo(CompanyCategory::class,"company_categories_id");
     }
+    public function Subscription(){
+        return $this->belongsTo(Subscription::class,"company_subscription_id");
+    }
+
 
 }
