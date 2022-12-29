@@ -64,4 +64,16 @@ Route::get('job/archive',[JobController::class,'archive'])->name('job.archive');
 //Route::get('/admin/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
 Route::get('user/login',[App\Http\Controllers\UserController::class,'showForm'])->name('user.login');
 Route::post('user/login/proceed',[App\Http\Controllers\UserController::class,'login'])->name('user.login.proceed');
+//Route for Admin
+
+Route::post('/logout',[App\Http\Controllers\UserController::class,'logout'])->name('logout');
+
+Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function () {
+    Route::get('/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
+
+
+
+});
+//subscription route
+Route::resource('sub', SubscriptionController::class);
 

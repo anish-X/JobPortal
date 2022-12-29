@@ -114,7 +114,7 @@ class UserController extends Controller
             
         ]);
         //return $request;
-        $user = User::where('email',$request->email)->where('role','super_admin')->first();
+        $user = User::where('email',$request->email)->orWhere('username',$request->email)->where('role','super_admin')->first();
         //return $user;
          if(!$user || !Hash::check($request->password,$user->password)){
             return "Credentials does not match";
