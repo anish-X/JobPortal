@@ -10,6 +10,7 @@ use App\Http\Middleware\AdminLogin;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CompanySubscriptionController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
