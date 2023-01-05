@@ -37,7 +37,6 @@ class CompanyCategoryController extends Controller
     {
         $companyCategory= CompanyCategory::create([
             "name" => $request->name,
-
         ]);
         return redirect()->route('companyCategories.create');
     }
