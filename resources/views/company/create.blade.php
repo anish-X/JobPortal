@@ -19,6 +19,7 @@
         <div class="mb-3">
           <label for="registration_number" class="registration_number">Registration Number</label>
           <input name="registration_number" type="text" class="form-control" id="registration_number"
+          
               placeholder="registration_number">
 
       </div>
