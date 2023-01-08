@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\CompanySubscription;
 use App\Models\Subscription;
 use Illuminate\Database\Seeder;
 use Mockery\Matcher\Subset;
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         Subscription::factory()->count(15)->create();
+          CompanySubscription::factory()->count(50)->create();
 
     }
 }
