@@ -30,14 +30,14 @@
       <td>{{$subscription->name}}</td>
       <td>{{$subscription->rate}}</td>
       <td>{{$subscription->duration}}</td>
-      
+
       <form method="get" action ="{{route('sub.edit',$subscription->id)}}">
-      
+
         <td>
           <button type="submit" class="btn btn-danger">Edit</button>
         </td>
       </form>
-     
+
 
        <form method="POST" action ="{{route('sub.destroy',$subscription->id)}}">
         @csrf
@@ -54,6 +54,14 @@
 </div>
 </div>
 
+<script >
+$(document).ready(function () {
+    $('#table').DataTable();
+});
+</script>
 </body>
+</html>
+</body>
+</html>
 
 

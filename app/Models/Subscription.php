@@ -14,4 +14,9 @@ class Subscription extends Model
         'duration',
 
     ];
+    public function companysubscription(){
+        return $this->hasMany(CompanySubscription::class);
+
+
+    }
 }

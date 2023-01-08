@@ -3,10 +3,13 @@
 use App\Http\Controllers\CompanyCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
+
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Middleware\AdminLogin;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\CompanySubscriptionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +39,7 @@ Route::post('/companies/search', [CompanyController::class,'search'])->name('com
 
 //company category route
 Route::resource('companyCategories',CompanyCategoryController::class);
-//search for company
+
 
 
 // Route::get('/companyCategory',[CompanyCategoryController::class,'index'])->name('companyCategory.index');
@@ -64,6 +67,7 @@ Route::post('user/login/proceed',[App\Http\Controllers\UserController::class,'lo
 //Route for Admin
 
 Route::post('/logout',[App\Http\Controllers\UserController::class,'logout'])->name('logout');
+
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function () {
     Route::get('/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
 });

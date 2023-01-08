@@ -1,10 +1,17 @@
 <?php
 
+use App\Http\Controllers\API\UserController as APIUserController;
+use App\Http\Controllers\UserController as ControllersUserController;
+use App\Models\User;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CompanyController;
+
+
+
+
 use App\Http\Controllers\API\CompanyCategoryController;
 
 /*
@@ -19,7 +26,7 @@ use App\Http\Controllers\API\CompanyCategoryController;
 */
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    
+
     //company category controller
     Route::get("/companycategory/index",[CompanyCategoryController::class,'index']);
     Route::get("/companycategory/store",[CompanyCategoryController::class,'store']);
@@ -48,10 +55,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
 });
-
-
-//User Controller using API
-Route::post("/register",[UserController::class,'register']);
-
-
