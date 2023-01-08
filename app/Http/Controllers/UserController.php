@@ -109,12 +109,12 @@ class UserController extends Controller
     }
     public function login(Request $request){
         $request->validate([
-            'email'=>['required','email'],
+            'email'=>['required'],
             'password'=>['required'],
             
         ]);
         //return $request;
-        $user = User::where('email',$request->email)->orWhere('username',$request->email)->where('role','super_admin')->first();
+        $user = User::where('email',$request->email)->orWhere('username',$request->email)->orWhere('mobile_num',$request->email)->where('role','super_admin')->first();
         //return $user;
          if(!$user || !Hash::check($request->password,$user->password)){
             return "Credentials does not match";

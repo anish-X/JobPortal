@@ -4,13 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\CompanySubscription;
+use App\Models\Company;
+use App\Models\CompanyCategory;
 use App\Models\Subscription;
-
-use App\Models\Subscription;
-
 use Illuminate\Database\Seeder;
 use Mockery\Matcher\Subset;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +20,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        CompanyCategory::factory(10)->create();
+        Company::factory(10)->create();
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

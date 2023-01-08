@@ -1,11 +1,18 @@
 <?php
 
-use App\Http\Controllers\API\Usercontroller;
 use App\Http\Controllers\API\UserController as APIUserController;
 use App\Http\Controllers\UserController as ControllersUserController;
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\CompanyController;
+
+
+
+
+use App\Http\Controllers\API\CompanyCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,57 +25,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    //company category controller
+    Route::get("/companycategory/index",[CompanyCategoryController::class,'index']);
+    Route::get("/companycategory/store",[CompanyCategoryController::class,'store']);
+    Route::get("/companycategory/show/{id}",[CompanyCategoryController::class,'show']);
+    Route::post("/companycategory/update/{id}",[CompanyCategoryController::class,'update']);
+    Route::post("/companycategory/delete/{id}",[CompanyCategoryController::class,'destroy']);
+
+    //company controller
+    Route::get("/company/index",[CompanyController::class,'index']);
+    Route::get("/company/create",[CompnayController::class,'create']);
+
+    // Route::apiResource('/companyCategory',[CompanyCategoryController::class]);
+
+    //user controller
+    Route::post("/login",[UserController::class,'login']);
+    Route::get('/me',[UserController::class,'user']);
+
+});
+
+
+
+
+
+// Route::get('/me',[UserController::class,'user'])->middleware('auth:sanctum');
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
 });
-Route::get('login',[UserController::class,"login"]);
-Route::get('sub',[\App\Http\Controllers\API\SubsriptionController::class,'show']);
-Route::get('sub/store',[\App\Http\Controllers\API\SubsriptionController::class,'store']);
-Route::post('sub/update',[\App\Http\Controllers\API\SubsriptionController::class,'update']);
-
-
- Route::apiResource("sub",\App\Http\Controllers\API\SubsriptionController::class);
- Route::apiResource('comsub',App\Http\Controllers\API\CompanySubscriptionController::class);
-
-// Route::apiResource('sub',[\App\Http\Controllers\API\SubsriptionController::class,]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

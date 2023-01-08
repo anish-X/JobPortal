@@ -71,6 +71,10 @@ Route::post('/logout',[App\Http\Controllers\UserController::class,'logout'])->na
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function () {
     Route::get('/dashboard',[App\Http\Controllers\UserController::class,'index'])->name('admin.dashboard');
 });
+
+
+
 //subscription route
 Route::resource('sub', SubscriptionController::class);
+
 
